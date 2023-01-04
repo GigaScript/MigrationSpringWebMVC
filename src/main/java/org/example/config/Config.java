@@ -1,4 +1,4 @@
-package org.example;
+package org.example.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -12,17 +12,9 @@ public class Config {
     @Bean
     public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
         final var bean = new RequestMappingHandlerAdapter();
-        bean.getMessageConverters().add(messageConverter());
+        bean.getMessageConverters().add(JsonMessageConverter.getConverter());
         return bean;
     }
 
-    private GsonHttpMessageConverter messageConverter() {
-        Gson gson = new GsonBuilder()
-                .excludeFieldsWithoutExposeAnnotation()
-                .create();
-        GsonHttpMessageConverter gsonConverter = new GsonHttpMessageConverter();
-        gsonConverter.setGson(gson);
 
-        return gsonConverter;
-    }
 }
