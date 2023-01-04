@@ -1,11 +1,13 @@
 package org.example.model;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.Objects;
 
 public class Post {
-    private long id;
-    private String content;
-    private PostStatus postStatus;
+    @Expose(serialize = true ) private long id;
+    @Expose(serialize = true )  private String content;
+    private PostStatus postStatus = PostStatus.POSTED;
 
     public Post() {
     }
